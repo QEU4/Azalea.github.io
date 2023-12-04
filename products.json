@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "name": "Floral box",
+        "price": 20,
+        "image": "floralbox.webp"
+    },
+    {
+        "id": 2,
+        "name": "Pretty pastels",
+        "price": 10,
+        "image": "pastels.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Pink Oriental Lilly's",
+        "price": 13,
+        "image": "lillys.jpg"
+    },
+    {
+        "id": 4,
+        "name": "White African Roses",
+        "price": 7,
+        "image": "whiteroses.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Pink Roses",
+        "price": 8,
+        "image": "pinkroses.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Milk Chocolate",
+        "price": 5,
+        "image": "milkchoco.jpg"
+    },
+    {
+        "id": 7,
+        "name": "White Chocolate",
+        "price": 5,
+        "image": "whitechoco.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Dark Chocolate",
+        "price": 7,
+        "image": "darkchoco.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Semisweet Chocolate",
+        "price": 10,
+        "image": "semisweet.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Bittersweet Chocolate",
+        "price": 6,
+        "image": "bittersweet.jpg"
+    },
+    {
+        "id": 11,
+        "name": "Perfumes",
+        "price": 15,
+        "image": "femaleper.jpg"
+    },
+    {
+        "id": 12,
+        "name": "Makeup",
+        "price": 30,
+        "image": "makeupgift.jpg"
+    },
+    {
+        "id": 13,
+        "name": "Soaps",
+        "price": 10,
+        "image": "soapsf.jpg"
+    },
+    {
+        "id": 14,
+        "name": "Special gift",
+        "price": 15,
+        "image": "sgf.jpg"
+    },
+    {
+        "id": 15,
+        "name": "Watches",
+        "price": 20,
+        "image": "watchf.png"
+    },
+    {
+        "id": 16,
+        "name": "Perfumes",
+        "price": 15,
+        "image": "maleper.jpg"
+    },
+    {
+        "id": 17,
+        "name": "Soaps",
+        "price": 10,
+        "image": "soapsm.jpg"
+    },
+    {
+        "id": 18,
+        "name": "Watches",
+        "price": 20,
+        "image": "watch.webp"
+    },
+    {
+        "id": 19,
+        "name": "Special gift",
+        "price": 15,
+        "image": "sgm.jpg"
+    },
+    {
+        "id": 20,
+        "name": "Accessories",
+        "price": 30,
+        "image": "glasses.jpg"
+    }
+]

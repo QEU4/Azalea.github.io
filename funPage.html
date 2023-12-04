@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>memory card game</title>
+    <link rel="stylesheet" href="external.css">
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #board {
+            height: 550px;
+            /*Adjusted height for better centering */
+            width: 500px;
+            /* Adjusted width for better centering */
+            margin: 0 auto;
+            /* Center horizontally */
+            display: flex;
+            flex-wrap: wrap;
+            background-color: antiquewhite;
+            border: 13px solid palevioletred;
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+        }
+
+        .card {
+            height: 125px;
+            width: 90px;
+            margin: 2.3px;
+        }
+    </style>
+    <script>
+        var errors = 0; // count the number of errors in the game
+        var crdList = [
+            "f1", "ch23", "f3", "ch1","ch2",
+             "ch3", "ch4","g11", "g2", "g3"
+        ];
+        var crdSet;
+        var board = [];
+        var rows = 4; // define number of rows
+        var clmn = 5; // define number of columns
+        var crd1Select;
+        var crd2Select;
+        
+
+        window.onload = function () {
+            shuffleCrd();
+            startGame();
+        }
+
+        
+        // Function to shuffle the cards in the card set
+        function shuffleCrd() {
+            crdSet = crdList.concat(crdList);
+            console.log(crdSet);
+
+            for (let i = 0; i < crdSet.length; i++) {
+                let j = Math.floor(Math.random() * crdSet.length);
+                let h = crdSet[i];
+                crdSet[i] = crdSet[j];
+                crdSet[j] = h;
+            }
+            console.log(crdSet);
+        }
+
+        
+        // Function to start the game by arranging cards on the board
+        function startGame() {
+            for (let r = 0; r < rows; r++) {
+                let row = [];
+                for (let c = 0; c < clmn; c++) {
+                    let crdImg = crdSet.pop();
+                    //card.src = crdImg + ".png"; ==> trying to change the images to the extension '.png' 
+                    row.push(crdImg);
+
+
+                    let card = document.createElement('img');
+                    card.id = r.toString() + "-" + c.toString();
+                    card.src = "back.png";
+                    card.classList.add("card");
+                    card.addEventListener("click", selectCard);
+                    document.getElementById("board").append(card);
+                }
+                board.push(row);
+            }
+            console.log(board);
+            setTimeout(hideCards, 1000);
+        }
+
+        // Function to hide the cards by setting their source to "back.png"
+        function hideCards() {
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < clmn; c++) {
+                    let card = document.getElementById(r.toString() + "-" + c.toString());
+                    card.src = "back.png";
+                }
+            }
+        }
+
+        // Function to handle the selection of a card
+        function selectCard() {
+            if (this.src.includes("back")) {
+                if (!crd1Select) {
+                    crd1Select = this;
+                    let coord = crd1Select.id.split("-");
+                    let r = parseInt(coord[0]);
+                    let c = parseInt(coord[1]);
+                    crd1Select.src = board[r][c] + ".png";
+                } else if (!crd2Select && this != crd1Select) {
+                    crd2Select = this;
+                    let coord = crd2Select.id.split("-");
+                    let r = parseInt(coord[0]);
+                    let c = parseInt(coord[1]);
+                    crd2Select.src = board[r][c] + ".png";
+                    setTimeout(update, 1000)
+                }
+            }
+        }
+
+        // Function to update the game state after selecting two cards
+        function update() {
+            if (crd1Select.src !== crd2Select.src) {
+                crd1Select.src = "back.png";
+                crd2Select.src = "back.png";
+                errors += 1;
+                document.getElementById("er").innerText = errors;
+            }
+            crd1Select = null;
+            crd2Select = null;
+        }
+    </script>
+</head>
+
+<body>
+    <div style="margin: 1% 1% 1% 1%; border-style: solid; border-color: palevioletred; border-radius: 5%;">
+    <h3>Errors: <span id="er">0</span></h3>
+    <div id="board"></div>
+    <br/>
+    </div>
+
+    <div style="text-align: right; margin: 0 1% 2% 5%;">
+        <a href="index.html" style="border-style: solid; border-color: palevioletred; color: black; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 20px ;">Back to home page...</a>
+    </div>
+    
+    <footer>
+        <p>@ flowers Oman- Flowers and gifts muscat</p>
+    </footer>
+</body>
+
+</html>

@@ -20,6 +20,44 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+.text-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgb(245, 200, 217);
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      animation: moveBanner 20s linear infinite;
+    }
+    @keyframes moveBanner {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .photo {
+			display: none;
+      width: 170px;
+      height: 170px;
+      margin-left: 30%;
+			object-fit: cover;
+			transition: opacity 1s ease-in-out;
+      border-style: solid;
+      border-color: pink;
+      border-width: 5px;
+            
+		}
+
+		.active {
+			display: block;
+			opacity: 1;
+        }
+    
 
 </style>
 </head>
@@ -46,6 +84,9 @@
           </button>
         </div>
       </div>
+      <button class="btn btn-default" type="submit" formaction="cart.html">
+        <img src="cart.png" style="height: 20px; width: 20px; background-color: white;"> 
+      </button>
     </form>
   </div>
 </nav>
@@ -61,9 +102,9 @@
 
 <table>
       <tr>
-        <td> <img src="gifts.jpg" style="height:25em; width: 25em;">  </td>
-        <td> <img src="flowers.jpg" style="height:25em; width: 25em;"> </td>
-        <td> <img src="chocolate.jpg" style="height:25em; width: 25em;">  </td>
+        <td> <img src="gifts.jpg" style="width: 25em; height: 25em;"></td>
+        <td> <img src="flowers.jpg" style="width: 25em; height: 25em;"></td>
+        <td> <img src="chocolate.jpg" style="width: 25em; height: 25em;"> </td>
       </tr>
 
       <tr class="sections">
@@ -76,16 +117,72 @@
 
 <hr>
 
-<div class="card btn-outline-dark">
-    <div class="card-body">
-        <p style="text-align: left;">Welcome to Azalea Gift Shop, your one-stop destination for all things delightful and heartwarming. At our online gift shop, we specialize in curating a unique and charming collection of gifts that will make every occasion special. Whether you're celebrating a birthday, anniversary, or simply want to show someone you care, our handpicked selection of gifts and accessories is designed to bring joy and smiles to your loved ones. Explore our enchanting world of thoughtful presents and discover the perfect gift for every moment.</p>
-    </div>
+
+<div class="row">
+  <div class="col-md-3">
+    <img class="photo active" src="watchf.png">
+    <img class="photo" src="sgm.jpg">
+    <img class="photo" src="sgf.jpg">
+  </div>
+  <div class="col-md-8">
+      <p style="text-align: left; font-size: 20px;">Welcome to Azalea Gift Shop, your one-stop destination for all things delightful and heartwarming. At our online gift shop, we specialize in curating a unique and charming collection of gifts that will make every occasion special. Whether you're celebrating a birthday, anniversary, or simply want to show someone you care, our handpicked selection of gifts and accessories is designed to bring joy and smiles to your loved ones. Explore our enchanting world of thoughtful presents and discover the perfect gift for every moment.</p>
+    
+  </div>
 </div>
- 
+
+
+
+<hr>
+
+<div style="margin: 3%; text-align: center; border-radius: 10%;border-width: 2px; border-style: solid ;">
+<a href="funPage.html" style="color: palevioletred; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 20px ;">Bored? lets play a little game!!</a>
+</div>
+
+<hr>
+
+<div style="margin: 3%; text-align: center; border-radius: 10%;border-width: 2px; border-style: solid ;">
+<a href="Questionnair.html" style="color: palevioletred; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 20px ;">Do you have any question?</a>
+</div>
+<hr>
 
 <footer>
     <p>@ flowers Oman- Flowers and gifts muscat</p>
 </footer>
+
+<div class="text-banner">
+  Welcome to the Azalea Gifthop website! Today is <span id="current-date"></span>, and the time is <span id="current-time"></span>
+</div>
+
+<script>
+  // JavaScript to update current date and time
+  function updateDateTime() {
+      var currentDate = new Date().toLocaleDateString();
+      var currentTime = new Date().toLocaleTimeString();
+      document.getElementById('current-date').textContent = currentDate;
+      document.getElementById('current-time').textContent = currentTime;
+    }
+
+    // Initial update
+    updateDateTime();
+
+    // Update every second
+    setInterval(updateDateTime, 1000);
+</script>
+
+
+
+<script>
+    var photos = document.querySelectorAll('.photo');
+    var index = 0;
+
+    setInterval(function() {
+        photos[index].classList.remove('active');
+        index = (index + 1) % photos.length;
+        photos[index].classList.add('active');
+    }, 3000);
+</script>
+
+
 
 </body>
 </html>

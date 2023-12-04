@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometric Shapes Calculator</title>
+</head>
+<body>
+
+    <h2>Select a Shape:</h2>
+
+    <input type="radio" name="shape" id="circle" onclick="showShapeInfo('circle')" />
+    <label for="circle">Circle</label>
+    <div id="circleInfo" style="display: none;">
+        <label for="radius">Radius:</label>
+        <input type="text" id="radius" />
+    </div>
+
+    <input type="radio" name="shape" id="rectangle" onclick="showShapeInfo('rectangle')" />
+    <label for="rectangle">Rectangle</label>
+    <div id="rectangleInfo" style="display: none;">
+        <label for="length">Length:</label>
+        <input type="text" id="length" />
+        <br>
+        <label for="width">Width:</label>
+        <input type="text" id="width" />
+    </div>
+
+    <input type="radio" name="shape" id="triangle" onclick="showShapeInfo('triangle')" />
+    <label for="triangle">Right-angle Triangle</label>
+    <div id="triangleInfo" style="display: none;">
+        <label for="base">Base:</label>
+        <input type="text" id="base" />
+        <br>
+        <label for="height">Height:</label>
+        <input type="text" id="height" />
+    </div>
+
+    <script src="geometrics.js"></script>
+</body>
+</html>
