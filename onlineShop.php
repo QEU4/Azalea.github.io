@@ -9,6 +9,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <!-- Include Bootstrap JavaScript after jQuery -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
 
 
   <style>
@@ -56,8 +57,6 @@
       width: 50%;
       margin-top: 30px;
       text-align: center;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     table,
@@ -84,7 +83,7 @@
       <ul class="nav navbar-nav">
         <li><a href="index.html">Home</a></li>
         <li><a href="AboutUs.html">About us</a></li>
-        <li class="active"><a href="onlineShop.html">Online Shop</a></li>
+        <li class="active"><a href="onlineShop.php">Online Shop</a></li>
         <li><a href="occasions.html">Occasions</a></li>
         <li><a href="contactUs.php">Contact us</a></li>
       </ul>
@@ -219,21 +218,93 @@
   <hr>
   <h1>Customers views</h1><!--customer vies-->
 
-  <form id="myform"><!--form start-->
-    <label>Name:</label>
-    <input type="text" id="Name" name="Name" /><!--textbox for the costumer name-->
+  <?php
 
-    <label>Your viewpoint:</label>
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+// Create a connection
+$conn = mysqli_connect($servername, $username, $password);
+
+// Check the connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}else{
+ 
+if (isset($_POST["productName"]) && isset($_POST["quality"]) && isset($_POST["views"]) && isset($_POST["newProduct"])) {
+    $productName = test_input($_POST["productName"]);
+    $quality = test_input($_POST["quality"]);
+    $views = test_input($_POST["views"]);
+    $newProduct = test_input($_POST["newProduct"]);
+
+    $databaseName = "azalea";
+      mysqli_select_db($conn, $databaseName);
+
+      // Check for errors in selecting the database
+      if (mysqli_errno($conn)) {
+        die("Error selecting database: " . mysqli_error($conn));
+      }
+
+    
+    
+    $sql = "insert into `dtb`(`ProductName`, `Quality`, `Viewpoint`, `NewProduct`) VALUES ('$productName', '$quality', '$views', '$newProduct')";
+   
+
+    try {
+        $result = mysqli_query($conn, $sql);
+
+        if ($result) {
+            echo "<div style='text-align: center;' class='alert alert-success' role='alert'> Sent successfully </div>";
+        } else {
+            echo "<div style='text-align: center;' class='alert alert-danger' role='alert'> Something went wrong! </div>";
+        }
+    } catch (mysqli_sql_exception $e) {
+        var_dump($e);
+        exit;
+    }
+}
+
+}
+// Close the connection
+mysqli_close($conn);
+
+function test_input($data)
+  {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+?>
+
+
+
+  <form id="myform" action="onlineShop.php" method="Post"><!--form start-->
+    <label>Product Name:</label>
+    <input type="text" id="Name" name="productName" /><!--textbox for the costumer product name-->
+
+    <label>Quality/10:</label>
+    <input type="number" id="Name" name="quality" /><!--textbox for the costumer product quality-->
+
+    <label>Your Viewpoint:</label>
     <input type="text" id="views" name="views" /><!--text boxt for the costumers views-->
 
-    <button type="button" onclick="addYourView()">Add your viewpoint</button><!--button to add your view to the table-->
-  </form><!--the end of the form-->
+    <label>New Product ?</label>
+    <input type="text" id="views" name="newProduct" /><!--text boxt for the costumers new product suggestion -->
 
+ 
+    <input type="submit" value="submit">
+    <br/>
+    <br/>
+    <button type="button" onclick="addYourView()">Add your opinion</button><!--button to add your view to the table-->
+  </form><!--the end of the form-->
+<br/>
   <div>
-  <table><!--create table object-->
+  <table style="margin: auto; "><!--create table object-->
     <thead>
       <tr>
-        <th>Name</th><!--the table headers-->
+        <th>Prouct Name</th><!--the table headers-->
         <th>costumer views</th>
       </tr>
     </thead>
@@ -242,7 +313,6 @@
     </tbody>
   </table>
 </div>
-<br/>
 
   <script><!--to use javascript-->
     function addYourView() {//addYourView function to add costumer views to the table
@@ -267,6 +337,13 @@
       document.getElementById("views").value = "";
     }
   </script>
+  <br/>
+  <form method="post" action="onlnshpTable.php">
+    <button class="btn btn-default" type="submit">
+      <img src="setting.png" style="height: 20px; width: 20px; background-color: white;">
+    </button>
+  </form>
+  <br/>
 
 
   <footer>

@@ -25,7 +25,8 @@ closeCart.addEventListener('click', () => {
 
 //this is for checkout button
 checkout.addEventListener('click', () => {
-  alert("Thank you for shopping in Azalea giftshop") 
+  var text = "Thank you for shopping in Azalea giftshop, your total price is " + totalPrice;
+  alert(text) 
   body.classList.toggle('showCart');
 })
 
